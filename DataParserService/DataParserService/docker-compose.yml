@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  scoredataservice:
+    image: ${DOCKER_REGISTRY-}scoredataservice
+    build:
+      context: .
+      dockerfile: ScoreDataService/Dockerfile
+
+  studentdataservice:
+    image: ${DOCKER_REGISTRY-}studentdataservice
+    build:
+      context: .
+      dockerfile: StudentDataService/Dockerfile
+

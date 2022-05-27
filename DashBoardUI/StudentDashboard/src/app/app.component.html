@@ -1,0 +1,33 @@
+<app-file-upload (onDataParsed)="createGradeView($event)"></app-file-upload>
+
+<div class="flex-container" *ngIf="data">
+  <div  *ngFor="let grade of data?.grades">
+    #{{grade.gradeNumber}}
+      <div class="subj" [ngStyle]="{'background-color':selectedColor}"  *ngFor="let subject of grade.subjects">
+        {{subject.subjectName}}
+      </div>
+  </div>
+</div>
+<br>
+<mat-slider *ngIf="data" [min]="0" (change)="changeValue($event)" [(ngModel)]="sliderValue" [max]="sliderMax" style="width: 100%;"></mat-slider>
+
+<table mat-table [dataSource]="dataSource" >
+  <ng-container matColumnDef="gradeNumber">
+    <th mat-header-cell *matHeaderCellDef> Grade Number </th>
+    <td mat-cell *matCellDef="let element"> {{element.gradeNumber}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="subjectName">
+    <th mat-header-cell *matHeaderCellDef> Subject Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.subjectName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="scores">
+    <th mat-header-cell *matHeaderCellDef> Scores </th>
+    <td mat-cell *matCellDef="let element"> {{element.scores}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+
+</table>
