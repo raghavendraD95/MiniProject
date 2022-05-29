@@ -6,10 +6,14 @@ services:
     build:
       context: .
       dockerfile: ScoreDataService/Dockerfile
-
-  studentdataservice:
+    ports:
+      - "8080:80"
+      - "8081:443"
+  sudentdataservice:
     image: ${DOCKER_REGISTRY-}studentdataservice
     build:
-      context: .
-      dockerfile: StudentDataService/Dockerfile
-
+        context: .
+        dockerfile: StudentDataService/Dockerfile
+    ports:
+      - "8082:80"
+      - "8083:443"

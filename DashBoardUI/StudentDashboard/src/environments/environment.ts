@@ -16,11 +16,11 @@ export const environment = {
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
 
 export const studentDataConfig ={
-  studentServiceBaseUrl:"https://localhost:44324/",
+  studentServiceBaseUrl:"http://localhost:8082/",
   postStudentConfigEndPoint:"api/StudentData"
 }
 
 export const scoreDataConfig={
-  scoreServiceBaseUrl:"https://localhost:44326/",
+  scoreServiceBaseUrl:"http://localhost:8080/",
   postScoreConfigEndPoint:"api/GradeScore"
 }
