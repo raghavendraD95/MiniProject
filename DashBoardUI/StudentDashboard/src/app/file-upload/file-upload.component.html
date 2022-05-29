@@ -1,6 +1,6 @@
 
     <button name="uplaot_btn" (click)="fileInput.click()" mat-raised-button color="primary">Upload Data File</button>
-    <input type="file" #fileInput hidden (change)="onUpload($event)" [multiple]="false">
+    <input type="file" accept=".json" #fileInput hidden (change)="onUpload($event)" [multiple]="false">
     
 <br>
 <p *ngIf="fileName">Uploaded file name: {{fileName}}</p>
