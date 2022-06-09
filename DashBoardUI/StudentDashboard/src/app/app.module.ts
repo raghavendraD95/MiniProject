@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 
 
@@ -32,7 +33,8 @@ import { MatTableModule } from '@angular/material/table';
     MatInputModule,
     HttpClientModule,
     MatGridListModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

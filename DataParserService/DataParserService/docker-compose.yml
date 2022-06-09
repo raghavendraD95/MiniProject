@@ -7,13 +7,13 @@ services:
       context: .
       dockerfile: ScoreDataService/Dockerfile
     ports:
-      - "8080:80"
-      - "8081:443"
+      - "5000:80"
+      - "5001:443"
   sudentdataservice:
     image: ${DOCKER_REGISTRY-}studentdataservice
     build:
         context: .
         dockerfile: StudentDataService/Dockerfile
     ports:
-      - "8082:80"
-      - "8083:443"
+      - "5002:80"
+      - "5003:443"

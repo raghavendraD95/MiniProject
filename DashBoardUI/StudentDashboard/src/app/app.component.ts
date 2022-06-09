@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ResponseDetails } from './model/responseDetails';
 import { StudentGradeData } from './model/StudentGradeDataModel';
 import { StudentDataService } from './service/student-data.service';
+import { WebSocketConnectionService } from './service/web-socket-connection.service';
 
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-}
 
 @Component({
   selector: 'app-root',
@@ -18,34 +15,23 @@ export interface Tile {
 
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    // let localdata = localStorage.getItem('dataSource');
-    // if(localdata){
-    //   this.data = JSON.parse(localdata);
-    //   this.data.grades.forEach(x=>{
-    //     x.subjects.forEach(y=>{
-    //       this.viewModel.push({
-    //         'gradeNumner':x.gradeNumber,
-    //         'subjectId':y.subjectId,
-    //         'subjectName':y.subjectName
-    //       })
-    //     })
-    //   })
-  
-    //   this.sliderMax = this.viewModel.length-1;
-    // }
+    
   }
-  constructor(private studentDataService:StudentDataService) {
-
+  constructor(private studentDataService:StudentDataService,private socketService: WebSocketConnectionService,
+    private snackBar:MatSnackBar) {
+    socketService.connect()
+    .subscribe(response=>{
+      if(response){
+      console.log("calling the special method");        
+      var socketEventData = response as ResponseDetails<any>;
+      var studentData = socketEventData.responseData
+      this.snackBar.open("Student data has been updated.","Close",{
+        duration: 4000
+      })
+      this.createGradeView(studentData);
+      }
+    });
   }
-
-  tiles: Tile[] = [
-    { text: 'One', cols: 3, rows: 1, color: 'lightblue' },
-    { text: 'Two', cols: 1, rows: 2, color: 'lightgreen' },
-    { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
-    { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
-  ];
-
-
 
   data: StudentGradeData;
   viewModel:any[] = [];
@@ -117,6 +103,10 @@ export class AppComponent implements OnInit {
   createGradeView(eventData: any) {
     this.data = eventData;
 
+    if(this.data){
+      this.socketService.subject.next(this.data)
+    }
+    this.viewModel = [];
     this.data.grades.forEach(x=>{
       x.subjects.forEach(y=>{
         this.viewModel.push({
@@ -129,9 +119,8 @@ export class AppComponent implements OnInit {
 
     this.sliderMax = this.viewModel.length-1;
 
-    //localStorage.setItem('dataSource',JSON.stringify(this.data));
-
     console.log(eventData);
+
   }
 
 
