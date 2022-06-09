@@ -1,0 +1,36 @@
+{
+    "studentId":1,
+    "studentName":"Bhavys",
+    "grades":[
+        {
+            "gradeNumber":4,
+            "subjects":[
+                {
+                    "subjectId":401,
+                    "subjectName":"Civics"
+                },
+                {
+                    "subjectId":402,
+                    "subjectName":"Economics"
+                }
+            ]
+        },
+        {
+            "gradeNumber":5,
+            "subjects":[
+                {
+                    "subjectId":501,
+                    "subjectName":"Maths-2"
+                },
+                {
+                    "subjectId":502,
+                    "subjectName":"Chemistry-2"
+                },
+                {
+                    "subjectId":503,
+                    "subjectName":"History-2"
+                }
+            ]
+        }
+    ]
+}
