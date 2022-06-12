@@ -9,6 +9,11 @@ services:
     ports:
       - "5000:80"
       - "5001:443"
+    volumes:
+      - type: bind
+        source: ./ScoreDataService/DataFolder
+        target: /app/DataFolder
+
   sudentdataservice:
     image: ${DOCKER_REGISTRY-}studentdataservice
     build:

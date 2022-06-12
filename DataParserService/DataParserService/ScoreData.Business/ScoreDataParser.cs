@@ -24,7 +24,7 @@ namespace ScoreData.Business
                 {
                     HasHeaderRecord = false
                 };
-                using var streamer = File.OpenText("DataFolder/SubjectScoreData.csv");
+                using var streamer = File.OpenText(@"DataFolder/SubjectScoreData.csv");
                 using var csvReader = new CsvReader(streamer, csvConfig);
 
                 scores = csvReader.GetRecords<SubjecScoreData>()
@@ -33,6 +33,7 @@ namespace ScoreData.Business
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
 
                 throw;
             }

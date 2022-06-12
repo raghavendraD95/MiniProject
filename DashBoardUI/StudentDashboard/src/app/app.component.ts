@@ -103,9 +103,7 @@ export class AppComponent implements OnInit {
   createGradeView(eventData: any) {
     this.data = eventData;
 
-    if(this.data){
-      this.socketService.subject.next(this.data)
-    }
+
     this.viewModel = [];
     this.data.grades.forEach(x=>{
       x.subjects.forEach(y=>{
